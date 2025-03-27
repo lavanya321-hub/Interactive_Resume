@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavanya S - Interactive Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        .skills-container {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.skill {
+    margin: 15px 0;
+}
+
+.skill-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.skill-bar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    height: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    background: #ffcc00;
+    width: 0;
+    border-radius: 5px;
+    transition: width 2s ease-in-out;
+}
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 500px;
+    margin: auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.contact-container:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.contact-container p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+.contact-container a {
+    color: #ffcc00;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.contact-container a:hover {
+    color: #ffd633;
+    text-shadow: 0 0 8px #ffcc00;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.linkedin {
+    background: #0077b5;
+    color: white;
+}
+
+.github {
+    background: #24292e;
+    color: white;
+}
+
+.linkedin:hover {
+    background: #005582;
+    transform: translateY(-3px);
+}
+
+.github:hover {
+    background: #181b1f;
+    transform: translateY(-3px);
+}
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.timeline-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.timeline-date {
+    font-weight: bold;
+    color: #ffcc00;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    margin: 5px 0;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.timeline-content p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        max-width: 90%;
+    }
+}
+
+.education-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.education-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.education-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.education-card h3 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.education-card p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    .education-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.typing-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 30px;
+    }
+}
+
+
+        section {
+            padding: 80px 20px;
+            min-height: 60vh;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 80%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .projects-container, .internships-container, .certifications-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .project-card, .internship-card, .certification-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: 0.3s;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .project-card:hover, .internship-card:hover, .certification-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .project-card h3, .internship-card h3, .certification-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .project-card p, .internship-card p, .certification-card p {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .internship-card span, .certification-card span {
+            display: block;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            .projects-container, .internships-container, .certifications-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+     <script>
+        const text = "Lavanya S, a Front-End Developer";
+let index = 0;
+
+function typeEffect() {
+    let typedText = document.getElementById("typed-text");
+    typedText.innerHTML = text.substring(0, index); // Ensures no duplication
+    if (index < text.length) {
+        index++;
+        setTimeout(typeEffect, 100);
+    }
+}
+
+window.onload = function() {
+    setTimeout(typeEffect, 500);
+};
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let skillsSection = document.querySelector("#skills");
+            let skillBars = document.querySelectorAll(".skill-fill");
+
+            function animateSkills() {
+                skillBars.forEach((bar) => {
+                    bar.style.width = bar.getAttribute("data-width");
+                });
+            }
+
+            let observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkills();
+                        observer.unobserve(entry.target); // Stop observing once animation is triggered
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(skillsSection);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#internships">Internships</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="about">
+        <div class="about-container">
+            <img src="Photo.jpg" alt="Lavanya S" class="profile-img">
+            <h2 class="typing-text">Hi, I'm <span id="typed-text"></span></h2>
+            <p>Motivated and detail-oriented Front-End Developer with expertise in HTML, CSS, and JavaScript. Passionate about creating interactive and user-friendly web experiences.</p>
+        </div>
+    </section>    
+    
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-container">
+            <div class="education-card">
+                <h3>St. Joseph's Institute of Technology</h3>
+                <p><strong>Bachelor of Information Technology</strong></p>
+                <p>CGPA: 8.22</p>
+                <p>2021 - 2025</p>
+            </div>
+            <div class="education-card">
+                <h3>Sree Iyappa Matriculation Higher Secondary School</h3>
+                <p><strong>HSC (12th Standard)</strong></p>
+                <p>Percentage: 91%</p>
+                <p>2020 - 2021</p>
+            </div>
+            <div class="education-card">
+                <h3>Sree Iyappa Matriculation Higher Secondary School</h3>
+                <p><strong>SSLC (10th Standard)</strong></p>
+                <p>Percentage: 89%</p>
+                <p>2018 - 2019</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - Present</div>
+                <div class="timeline-content">
+                    <h3>Web Development Intern - CodSoft</h3>
+                    <p>Worked on front-end and back-end technologies, including React, Node.js, and MongoDB.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023</div>
+                <div class="timeline-content">
+                    <h3>Full-Stack Intern - Internshala</h3>
+                    <p>Developed and maintained web applications using HTML, CSS, JavaScript, and backend frameworks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill">
+                <div class="skill-name">HTML, CSS, JavaScript</div>
+                <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">Java, C, Python</div>
+                <div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">React & Node.js</div>
+                <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">Database (SQL & MongoDB)</div>
+                <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>Designed and developed a personal portfolio website to showcase skills, projects, and experience. Implemented a responsive and interactive UI with smooth navigation, dynamic content, and modern web technologies to create a professional online presence.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Weather App – API Integration Project</h3>
+                <p>Developed a responsive weather application that fetches real-time weather data using a weather API. Implemented features like location-based weather updates, temperature conversion, and dynamic UI changes based on weather conditions for an enhanced user experience.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>To-Do List Application</h3>
+                <p>Developed a user-friendly and responsive To-Do List application with interactive features for task management. Implemented functionalities such as task addition, deletion, editing, and status tracking to enhance productivity and organization.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Interactive Resume – Web Development Project</h3>
+                <p>Developed a dynamic and engaging interactive resume using modern web technologies. Implemented a responsive design with interactive elements to enhance user experience, showcasing skills, projects, and professional journey in an intuitive and visually appealing manner.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="internships">
+        <h2>Internships</h2>
+        <div class="internships-container">
+            <div class="internship-card">
+                <h3>Internshala</h3>
+                <p>Gained hands-on experience in developing and enhancing web applications. Worked on an e-commerce website, focusing on frontend and backend development, improving UI/UX, and ensuring responsiveness.</p>
+                <p>Developed key skills in web technologies, debugging, and project collaboration.</p>
+                <span>Duration: 3 Months</span>
+            </div>
+            <div class="internship-card">
+                <h3>CodSoft</h3>
+                <p>Developed responsive web applications using React for front-end and Node.js for backend services.</p>
+                <p>Collaborated with a team to improve application functionality and enhance user experience.</p>
+                <span>Duration: 6 Months</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="certifications-container">
+            <div class="certification-card">
+                <h3>Mastering Data Structures and Algorithms</h3>
+                <p>Completed an advanced course on data structures and algorithms, enhancing problem-solving skills.</p>
+                <span>Platform: Udemy</span>
+            </div>
+            <div class="certification-card">
+                <h3>Java Programming</h3>
+                <p>Earned certification in Java programming, covering object-oriented concepts and advanced techniques.</p>
+                <span>Platform: PrepInsta</span>
+            </div>
+            <div class="certification-card">
+                <h3>C Programming</h3>
+                <p>Completed a comprehensive course on C programming, gaining expertise in memory management and system programming.</p>
+                <span>Platform: Great Learning</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-container">
+            <p><strong>Email:</strong> <a href="mailto:lavanyasampath8@gmail.com">lavanyasampath8@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+919344192287">+91 9344192287</a></p>
+            <p><strong>Location:</strong> Chennai, Tamil Nadu</p>
+            <div class="social-links">
+                <a href="#" target="_blank" class="social-btn linkedin">LinkedIn</a>
+                <a href="#" target="_blank" class="social-btn github">GitHub</a>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
