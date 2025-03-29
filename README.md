@@ -40,7 +40,7 @@ A modern, interactive digital resume showcasing Lavanya S's professional journey
 
 ### View Online
 The resume is hosted at:  
-[https://lavanya321-hub.github.io/Interactive_Resume/](https://lavanya321-hub.github.io/Interactive_Resume/)
+interactive-resume-orcin.vercel.app
 
 ### Run Locally
 1. Clone the repository:
@@ -108,6 +108,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Lavanya S
 📧 lavanyasampath8@gmail.com
 📞 +91 9344192287
+Project Link: https://github.com/lavanya321-hub/Interactive_Resume/
 🌐 GitHub Profile
 
 <div align="center"> <sub>Built with ❤️ by Lavanya S | 2024</sub> </div> ```
